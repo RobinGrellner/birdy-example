@@ -1,4 +1,3 @@
-// app/[userId]/page.tsx
 import { getUserById } from "@/lib/calls";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";

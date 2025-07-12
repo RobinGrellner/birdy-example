@@ -5,7 +5,6 @@ import Image from "next/image";
 
 export default async function HomePage() {
   const users = await getUsers(10, 0);
-  // const userAvatars = getUserAvatars(users);
 
   return (
     <main className="p-6">
