@@ -2,7 +2,7 @@
 export default function UserPageLoading() {
   return (
     <>
-      <div className="wd-full bg-amber-400"> User Overview loading </div>
+      <div className="wd-full bg-amber-400"> User loading </div>
     </>
   );
 }
