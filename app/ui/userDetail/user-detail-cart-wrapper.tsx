@@ -1,7 +1,7 @@
 import { getCartsByUser } from "@/lib/calls";
 import UserCartCard from "./user-cart-card";
 
-export default async function UserDetailCartTab({
+export default async function UserDetailCartWrapper({
   userId,
 }: {
   userId: string;
@@ -9,7 +9,6 @@ export default async function UserDetailCartTab({
   const carts = await getCartsByUser(userId);
   return (
     <div>
-      <h1 className="text-lg font-bold ml-5">Current Carts</h1>
       {carts.length == 0 ? (
         <p>No Carts found</p>
       ) : (

@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function UserCartCard({ cart }: { cart: any }) {
   return (
-    <Card className="m-5">
+    <Card className="my-3">
       <CardContent>
         {cart.products.map((product: any) => (
           <div key={"cart_" + cart.id + "_product_" + product.id}>
@@ -17,10 +17,9 @@ export default function UserCartCard({ cart }: { cart: any }) {
             <Separator className="mb-3" />
           </div>
         ))}
-        <div className="flex flex-row">
-          <p>
-            Price ({cart.totalQuantity} products): {cart.discountedTotal}
-          </p>
+        <div className="text-center">
+          Price ({cart.totalQuantity} products): {" "}
+          <span className="font-bold">{cart.discountedTotal}$</span>
         </div>
       </CardContent>
     </Card>

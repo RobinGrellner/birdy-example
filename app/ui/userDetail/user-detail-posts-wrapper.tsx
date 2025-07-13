@@ -1,7 +1,7 @@
 import { getPostsByUser } from "@/lib/calls";
 import UserPostCard from "./user-post-card";
 
-export default async function UserDetailPostsTab({
+export default async function UserDetailPostsWrapper({
   userId,
 }: {
   userId: string;
@@ -9,7 +9,6 @@ export default async function UserDetailPostsTab({
   const posts = await getPostsByUser(userId);
   return (
     <div>
-      <h1 className="text-lg font-bold ml-5">Recent Posts</h1>
       {posts.length == 0 ? (
         <p>No Posts found</p>
       ) : (

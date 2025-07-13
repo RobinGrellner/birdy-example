@@ -1,49 +1,35 @@
 import { getUserById } from "@/lib/calls";
-import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserDetailInfoTab, {
   UserInfoDetail,
 } from "../ui/userDetail/user-detail-info-tab";
-import UserDetailPostsTab from "../ui/userDetail/user-detail-posts-tab";
-import UserDetailCartTab from "../ui/userDetail/user-detail-cart-tab";
+import UserDetailPostsWrapper from "../ui/userDetail/user-detail-posts-wrapper";
+import UserDetailCartWrapper from "../ui/userDetail/user-detail-cart-wrapper";
 import UserDetailLarge from "../ui/userDetail/user-detail-large";
 import { capitalizeFirstLetter } from "@/lib/utils";
-import { userInfo } from "os";
+import { Separator } from "@/components/ui/separator";
+import { PostCartCardsSkeleton } from "../ui/skeletons";
+import { Suspense } from "react";
 
-export default async function UserPage({
+export default async function UserDetailPage({
   params,
 }: {
   params: { userId: string };
 }) {
-  const user = await getUserById(params.userId);
+  const { userId } = await params;
+
+  const user = await getUserById(userId);
 
   const userInfoDetail = user as UserInfoDetail;
   return (
-    <main className="p-6">
-      <Link href="/">
-        <svg
-          className="w-10 h-10 text-gray-800 dark:text-white"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M5 12h14M5 12l4-4m-4 4 4 4"
-          />
-        </svg>
-      </Link>
-      <div className="flex flex-row">
+    <main className="px-6">
+      <div className="w-fit flex flex-row">
         <img
           src={user.image}
           alt={user.firstName}
           width={120}
           height={120}
-          className="rounded-full mb-4 mr-5"
+          className="rounded-full mr-5"
         />
         <div className="flex flex-col justify-center">
           <h2 className="text-xl font-bold mb-2">
@@ -55,7 +41,8 @@ export default async function UserPage({
           <p className="text-gray-500 mb-1">Age: {user.age}</p>
         </div>
       </div>
-      <Tabs defaultValue="info" className="w-[400px] md:hidden">
+      <Separator className={"hidden md:flex my-3"} />
+      <Tabs defaultValue="info" className="w-full mt-3 md:hidden">
         <TabsList>
           <TabsTrigger value="info">Information</TabsTrigger>
           <TabsTrigger value="posts">Recent Posts</TabsTrigger>
@@ -65,10 +52,14 @@ export default async function UserPage({
           <UserDetailInfoTab info={user} />
         </TabsContent>
         <TabsContent value="posts">
-          <UserDetailPostsTab userId={user.id}/>
+          <Suspense fallback={<PostCartCardsSkeleton />}>
+            <UserDetailPostsWrapper userId={user.id} />
+          </Suspense>
         </TabsContent>
         <TabsContent value="carts">
-          <UserDetailCartTab userId={user.id} />
+          <Suspense fallback={<PostCartCardsSkeleton />}>
+            <UserDetailCartWrapper userId={user.id} />
+          </Suspense>
         </TabsContent>
       </Tabs>
       <UserDetailLarge

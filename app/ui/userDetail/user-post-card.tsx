@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function UserPostCard({ post }: { post: any }) {
   return (
-    <Card className="m-5">
+    <Card className="my-3">
       <CardContent>
         <h1 className="text-xl font-bold">{post.title}</h1>
         <p>{post.body}</p>

@@ -1,21 +1,20 @@
 import { Separator } from "@/components/ui/separator";
 import { UserInfoDetail } from "./user-detail-info-tab";
-import { getCartsByUser, getPostsByUser } from "@/lib/calls";
-import UserPostCard from "./user-post-card";
-import UserCartCard from "./user-cart-card";
+import UserDetailPostsWrapper from "./user-detail-posts-wrapper";
+import UserDetailCartWrapper from "./user-detail-cart-wrapper";
+import { Suspense } from "react";
+import { PostCartCardsSkeleton } from "../skeletons";
 
-export default async function UserDetailLarge({
+export default function UserDetailLarge({
   className,
   info,
 }: {
   className?: string;
   info: UserInfoDetail;
 }) {
-  const posts = await getPostsByUser(info.id);
-  const carts = await getCartsByUser(info.id);
   return (
     <>
-      <div className={className + " justify-evenly"}>
+      <div className={className + " justify-between"}>
         <div className="mx-5">
           <h1 className="text-lg font-bold">Account Information</h1>
           <p>Username: {info.username}</p>
@@ -49,25 +48,17 @@ export default async function UserDetailLarge({
       </div>
       <Separator className={className + " my-3"} />
       <div className={className + " md:grid md:grid-cols-2"}>
-        <div>
-          <h1 className="text-lg font-bold ml-5">Recent Posts</h1>
-          {posts.length == 0 ? (
-            <p>No Posts found</p>
-          ) : (
-            posts.map((post: any) => (
-              <UserPostCard key={"post_" + post.id} post={post} />
-            ))
-          )}
+        <div className="ml-5">
+          <h1 className="text-lg font-bold">Recent Posts</h1>
+          <Suspense fallback={<PostCartCardsSkeleton />}>
+            <UserDetailPostsWrapper userId={info.id} />
+          </Suspense>
         </div>
-        <div>
-          <h1 className="text-lg font-bold ml-5">Current Carts</h1>
-          {carts.length == 0 ? (
-            <p>No Carts found</p>
-          ) : (
-            carts.map((cart: any) => (
-              <UserCartCard key={"cart_" + cart.id} cart={cart} />
-            ))
-          )}
+        <div className="ml-5">
+          <h1 className="text-lg font-bold">Current Carts</h1>
+          <Suspense fallback={<PostCartCardsSkeleton />}>
+            <UserDetailCartWrapper userId={info.id} />
+          </Suspense>
         </div>
       </div>
     </>

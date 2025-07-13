@@ -19,9 +19,9 @@ interface UserProps {
 
 export default function UserOverviewCard({ user }: { user: UserProps }) {
   return (
-    <Link href={`/${user.id}`}>
-      <Card className="items-center justify-center hover:shadow-lg transition duration-300 cursor-pointer">
-        <CardContent className="gap-4 p-4">
+    <Link href={`/${user.id}`} className="">
+      <Card className="py-3 flex h-full w-full items-center justify-center hover:shadow-lg transition duration-300 cursor-pointer">
+        <CardContent className="gap-4 h-full">
           <img
             src={user.image}
             alt={user.firstName}
