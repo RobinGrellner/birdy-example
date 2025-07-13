@@ -48,14 +48,14 @@ export default function UserDetailInfoTab({ info }: { info: UserInfoDetail }) {
         <p>City: {info.address.city}</p>
         <p>Postal Code: {info.address.postalCode}</p>
         <p>Address: {info.address.address}</p>
-        <Separator className="my-3"/>
+        <Separator className="my-3" />
         <h1 className="text-lg font-bold">Banking Information</h1>
         <p>Type of Card: {info.bank.cardType}</p>
         <p>Currency: {info.bank.currency}</p>
         <p>IBAN: {info.bank.iban}</p>
         <p>Card Number: {info.bank.cardNumber}</p>
         <p>Expiration Date: {info.bank.cardExpire}</p>
-        <Separator className="my-3"/>
+        <Separator className="my-3" />
         <h1 className="text-lg font-bold">Company Information</h1>
         <p>Company: {info.company.name}</p>
         <p>Department: {info.company.department}</p>

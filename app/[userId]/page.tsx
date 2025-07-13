@@ -63,7 +63,6 @@ export default async function UserDetailPage({
         </TabsContent>
       </Tabs>
       <UserDetailLarge
-        className="hidden md:flex"
         info={userInfoDetail}
       ></UserDetailLarge>
     </main>

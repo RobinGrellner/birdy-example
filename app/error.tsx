@@ -1,10 +1,9 @@
 "use client";
 
-//TODO Implement user not found page
-export default function UserPageError() {
+export default function BaseErrorPage() {
   return (
-    <>
-      <div>User not found</div>
-    </>
+    <div className="align-self-center justify-self-center">
+      Something went wrong!
+    </div>
   );
 }

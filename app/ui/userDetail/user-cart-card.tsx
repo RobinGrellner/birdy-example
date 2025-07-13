@@ -18,7 +18,7 @@ export default function UserCartCard({ cart }: { cart: any }) {
           </div>
         ))}
         <div className="text-center">
-          Price ({cart.totalQuantity} products): {" "}
+          Price ({cart.totalQuantity} products):{" "}
           <span className="font-bold">{cart.discountedTotal}$</span>
         </div>
       </CardContent>

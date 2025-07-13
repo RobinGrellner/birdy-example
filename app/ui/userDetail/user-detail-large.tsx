@@ -14,36 +14,86 @@ export default function UserDetailLarge({
 }) {
   return (
     <>
-      <div className={className + " justify-between"}>
-        <div className="mx-5">
+      <div className={className + "hidden md:flex lg:grid grid-cols-3"}>
+        <div className="mx-5 self-start">
           <h1 className="text-lg font-bold">Account Information</h1>
-          <p>Username: {info.username}</p>
-          <p>E-Mail: {info.email}</p>
-          <p>Phone: {info.phone}</p>
+          <p>
+            <span className="font-semibold">Username:</span> {info.username}
+          </p>
+          <p>
+            <span className="font-semibold">E-Mail:</span> {info.email}
+          </p>
+          <p>
+            <span className="font-semibold">Phone:</span> {info.phone}
+          </p>
           <h1 className="text-md font-bold">Personal Address</h1>
-          <p>Country: {info.address.country}</p>
-          <p>City: {info.address.city}</p>
-          <p>Postal Code: {info.address.postalCode}</p>
-          <p>Address: {info.address.address}</p>
+          <p>
+            <span className="font-semibold">Country:</span>{" "}
+            {info.address.country}
+          </p>
+          <p>
+            <span className="font-semibold">City:</span> {info.address.city}
+          </p>
+          <p>
+            <span className="font-semibold">Postal Code:</span>{" "}
+            {info.address.postalCode}
+          </p>
+          <p>
+            <span className="font-semibold">Address:</span>{" "}
+            {info.address.address}
+          </p>
         </div>
         <div className="mx-5">
           <h1 className="text-lg font-bold">Banking Information</h1>
-          <p>Type of Card: {info.bank.cardType}</p>
-          <p>Currency: {info.bank.currency}</p>
-          <p>IBAN: {info.bank.iban}</p>
-          <p>Card Number: {info.bank.cardNumber}</p>
-          <p>Expiration Date: {info.bank.cardExpire}</p>
+          <p>
+            <span className="font-semibold">Type of Card:</span>{" "}
+            {info.bank.cardType}
+          </p>
+          <p>
+            <span className="font-semibold">Currency:</span>{" "}
+            {info.bank.currency}
+          </p>
+          <p>
+            <span className="font-semibold">IBAN:</span> {info.bank.iban}
+          </p>
+          <p>
+            <span className="font-semibold">Card Number:</span>{" "}
+            {info.bank.cardNumber}
+          </p>
+          <p>
+            <span className="font-semibold">Expiration Date:</span>{" "}
+            {info.bank.cardExpire}
+          </p>
         </div>
         <div className="mx-5">
           <h1 className="text-lg font-bold">Company Information</h1>
-          <p>Company: {info.company.name}</p>
-          <p>Department: {info.company.department}</p>
-          <p>Title: {info.company.title}</p>
+          <p>
+            <span className="font-semibold">Company:</span> {info.company.name}
+          </p>
+          <p>
+            <span className="font-semibold">Department:</span>{" "}
+            {info.company.department}
+          </p>
+          <p>
+            <span className="font-semibold">Title:</span> {info.company.title}
+          </p>
           <h1 className="text-md font-bold">Company Address</h1>
-          <p>Country: {info.company.address.country}</p>
-          <p>City: {info.company.address.city}</p>
-          <p>Postal Code: {info.company.address.postalCode}</p>
-          <p>Address: {info.company.address.address}</p>
+          <p>
+            <span className="font-semibold">Country:</span>{" "}
+            {info.company.address.country}
+          </p>
+          <p>
+            <span className="font-semibold">City:</span>{" "}
+            {info.company.address.city}
+          </p>
+          <p>
+            <span className="font-semibold">Postal Code:</span>{" "}
+            {info.company.address.postalCode}
+          </p>
+          <p>
+            <span className="font-semibold">Address:</span>{" "}
+            {info.company.address.address}
+          </p>
         </div>
       </div>
       <Separator className={className + " my-3"} />
