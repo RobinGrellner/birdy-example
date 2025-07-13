@@ -1,9 +1,9 @@
 import { Separator } from "@/components/ui/separator";
 import { UserInfoDetail } from "./user-detail-info-tab";
-import UserDetailPostsWrapper from "./user-detail-posts-wrapper";
-import UserDetailCartWrapper from "./user-detail-cart-wrapper";
 import { Suspense } from "react";
 import { PostCartCardsSkeleton } from "../skeletons";
+import { UserCartCardWrapper } from "./user-cart-card";
+import { UserPostCardWrapper } from "./user-post-card";
 
 export default function UserDetailLarge({
   className,
@@ -101,13 +101,13 @@ export default function UserDetailLarge({
         <div className="ml-5">
           <h1 className="text-lg font-bold">Recent Posts</h1>
           <Suspense fallback={<PostCartCardsSkeleton />}>
-            <UserDetailPostsWrapper userId={info.id} />
+            <UserPostCardWrapper userId={info.id} />
           </Suspense>
         </div>
         <div className="ml-5">
           <h1 className="text-lg font-bold">Current Carts</h1>
           <Suspense fallback={<PostCartCardsSkeleton />}>
-            <UserDetailCartWrapper userId={info.id} />
+            <UserCartCardWrapper userId={info.id} />
           </Suspense>
         </div>
       </div>

@@ -1,7 +1,23 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { getCartsByUser } from "@/lib/calls";
 
-export default function UserCartCard({ cart }: { cart: any }) {
+export async function UserCartCardWrapper({ userId }: { userId: string }) {
+  const carts = await getCartsByUser(userId);
+  return (
+    <div>
+      {carts.length == 0 ? (
+        <p>No Carts found</p>
+      ) : (
+        carts.map((cart: any) => (
+          <UserCartCard key={"cart_" + cart.id} cart={cart} />
+        ))
+      )}
+    </div>
+  );
+}
+
+export function UserCartCard({ cart }: { cart: any }) {
   return (
     <Card className="my-3">
       <CardContent>

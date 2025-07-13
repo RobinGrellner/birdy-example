@@ -1,10 +1,26 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { getPostsByUser } from "@/lib/calls";
 
-export default function UserPostCard({ post }: { post: any }) {
+export async function UserPostCardWrapper({ userId }: { userId: string }) {
+  const posts = await getPostsByUser(userId);
+  return (
+    <div>
+      {posts.length == 0 ? (
+        <p>No Posts found</p>
+      ) : (
+        posts.map((post: any) => (
+          <UserPostCard key={"post_" + post.id} post={post} />
+        ))
+      )}
+    </div>
+  );
+}
+
+export function UserPostCard({ post }: { post: any }) {
   return (
     <Card className="my-3">
       <CardContent>
-        <h1 className="text-xl font-bold">{post.title}</h1>
+        <h1 className="text-xl font-bold mb-2">{post.title}</h1>
         <p>{post.body}</p>
         <div className="flex flex-row gap-5 my-2">
           <div className="flex flex-row">

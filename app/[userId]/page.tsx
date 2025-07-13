@@ -3,13 +3,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserDetailInfoTab, {
   UserInfoDetail,
 } from "../ui/userDetail/user-detail-info-tab";
-import UserDetailPostsWrapper from "../ui/userDetail/user-detail-posts-wrapper";
-import UserDetailCartWrapper from "../ui/userDetail/user-detail-cart-wrapper";
 import UserDetailLarge from "../ui/userDetail/user-detail-large";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { PostCartCardsSkeleton } from "../ui/skeletons";
 import { Suspense } from "react";
+import { UserCartCardWrapper } from "../ui/userDetail/user-cart-card";
+import { UserPostCardWrapper } from "../ui/userDetail/user-post-card";
 
 export default async function UserDetailPage({
   params,
@@ -53,18 +53,16 @@ export default async function UserDetailPage({
         </TabsContent>
         <TabsContent value="posts">
           <Suspense fallback={<PostCartCardsSkeleton />}>
-            <UserDetailPostsWrapper userId={user.id} />
+            <UserPostCardWrapper userId={user.id} />
           </Suspense>
         </TabsContent>
         <TabsContent value="carts">
           <Suspense fallback={<PostCartCardsSkeleton />}>
-            <UserDetailCartWrapper userId={user.id} />
+            <UserCartCardWrapper userId={user.id} />
           </Suspense>
         </TabsContent>
       </Tabs>
-      <UserDetailLarge
-        info={userInfoDetail}
-      ></UserDetailLarge>
+      <UserDetailLarge info={userInfoDetail}></UserDetailLarge>
     </main>
   );
 }
