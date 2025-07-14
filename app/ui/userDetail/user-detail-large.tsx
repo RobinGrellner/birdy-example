@@ -12,9 +12,10 @@ export default function UserDetailLarge({
   className?: string;
   info: UserInfoDetail;
 }) {
+  className = typeof className === "undefined" ? "" : className;
   return (
     <>
-      <div className={className + "hidden md:flex lg:grid grid-cols-3"}>
+      <div className={className + " hidden md:flex lg:grid lg:grid-cols-3"}>
         <div className="mx-5 self-start">
           <h1 className="text-lg font-bold">Account Information</h1>
           <p>
@@ -97,7 +98,7 @@ export default function UserDetailLarge({
         </div>
       </div>
       <Separator className={className + " my-3"} />
-      <div className={className + " md:grid md:grid-cols-2"}>
+      <div className={className + " hidden md:grid md:grid-cols-2"}>
         <div className="ml-5">
           <h1 className="text-lg font-bold">Recent Posts</h1>
           <Suspense fallback={<PostCartCardsSkeleton />}>
